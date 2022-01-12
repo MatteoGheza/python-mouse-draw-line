@@ -11,6 +11,8 @@ __pycache__/
 build/
 develop-eggs/
 dist/
+PythonMouseDrawLine*/*
+*.zip
 downloads/
 eggs/
 .eggs/

@@ -11,6 +11,20 @@ def lost_focus():
     global window
     window.minimize()
 
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+icon_path = resource_path(os.path.join('images', 'logo.ico'))
+print(os.walk('.'))
+print(os.walk(resource_path('images')))
+
 layout = [  [sg.Text('Disegna una linea utilizzando il mouse', size=(60, 1), font=("Helvetica"))],
             [sg.Text('Tempo impiegato (in secondi)'), sg.Slider(range=(1,5), default_value=1, orientation='horizontal', key='duration')],
             [sg.Button('Modalità automatica', key='auto_mode')],
@@ -23,7 +37,7 @@ layout = [  [sg.Text('Disegna una linea utilizzando il mouse', size=(60, 1), fon
             [sg.Button('Imposta punto iniziale', key='get_initial_position'), sg.Button('Imposta punto finale', key='get_final_position')],
             [sg.Button('Disegna', key='draw')] ]
 
-window = sg.Window('Disegna linee con il mouse', layout, icon=os.path.join('images', 'logo.ico'))
+window = sg.Window('Disegna linee con il mouse', layout, icon=icon_path)
 
 mouse_initial_position = (0, 0)
 mouse_final_position = (0, 0)   
@@ -77,7 +91,7 @@ def draw():
             print(mouse_initial_position, mouse_final_position)
             mouse.drag(mouse_initial_position[0], mouse_initial_position[1], mouse_final_position[0], mouse_final_position[1], absolute=True, duration=float(values['duration']))
     else:
-        sg.popup('Non hai ancora selezionato i punti iniziale e finale', icon=os.path.join('images', 'logo.ico'))
+        sg.popup('Non hai ancora selezionato i punti iniziale e finale', icon=icon_path)
 
 while True:
     global event, values

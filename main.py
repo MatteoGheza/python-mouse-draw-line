@@ -19,7 +19,7 @@ layout = [  [sg.Text('Disegna una linea utilizzando il mouse', size=(60, 1), fon
             [sg.CBox('Blocca movimenti asse y', key='y_lock')],
             [sg.Text('Iterazioni per disegno'), sg.Slider(range=(1,5), default_value=1, orientation='horizontal', key='iterations')],
             [sg.CBox('Disegna automaticamente quando il punto finale viene selezionato', key='do_not_require_button_press', default=True)],
-            [sg.Button('Ottieni punto iniziale', key='get_initial_position'), sg.Button('Ottieni punto finale', key='get_final_position')],
+            [sg.Button('Imposta punto iniziale', key='get_initial_position'), sg.Button('Imposta punto finale', key='get_final_position')],
             [sg.Button('Disegna', key='draw')] ]
 
 window = sg.Window('Disegna linee con il mouse', layout)

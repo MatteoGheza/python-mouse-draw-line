@@ -1,7 +1,7 @@
 import mouse
 import PySimpleGUI as sg
 import time
-import os
+import os, sys
 
 def get_focus():
     global window
@@ -22,8 +22,6 @@ def resource_path(relative_path):
     return os.path.join(base_path, relative_path)
 
 icon_path = resource_path(os.path.join('images', 'logo.ico'))
-print(os.walk('.'))
-print(os.walk(resource_path('images')))
 
 layout = [  [sg.Text('Disegna una linea utilizzando il mouse', size=(60, 1), font=("Helvetica"))],
             [sg.Text('Tempo impiegato (in secondi)'), sg.Slider(range=(1,5), default_value=1, orientation='horizontal', key='duration')],
